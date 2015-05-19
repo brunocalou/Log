@@ -1,5 +1,5 @@
 ## Log
-Arduino log library
+Arduino log library. This library was made to avoid the tedious job of printing something and then commenting sereval lines of print commands when the information to be printed is not useful at that time. It was tested using the Serial object and the SoftwareSerial library (to use the bluetooth, for example), but it should work with (almost) any library that inherits from the Stream class, such as SD, EthernetClient, EthernetServer, ... (note that the library just prints stuff, you must handle the other operations according to the Stream class you are using).
 
 ------------------------
 ##Installation
