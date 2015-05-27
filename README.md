@@ -86,4 +86,4 @@ Arduino log library. This library was made to avoid the tedious job of printing 
 
 ###`global`
 
-*  log_endl - '\n'
+*  `const char * log_endl` - '\n'
