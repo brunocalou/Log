@@ -33,7 +33,7 @@ Arduino log library. This library was made to avoid the tedious job of printing 
 
 *  `size_t write(const uint8_t *buffer, size_t size)` - Calls the write method from the current stream
 
-*  `size_t print(LogPriority priority, char const * tag, T msg)` - Prints the priority, the tag and the message in the following pattern:
+*  `size_t print(LogPriority priority, char const * tag, T msg, bool print_header=true)` - Prints the priority, the tag and the message in the following pattern:
 		
       `priority/tag: message`
 		
@@ -42,6 +42,10 @@ Arduino log library. This library was made to avoid the tedious job of printing 
 		- The log object is enabled and  
 		- The message's priority is the same as the current priority or  
 		- The current priority is setted to verbose  
+
+*  `Log& operator<<(const T& msg)` - Overloads the << operator for a c++ style printing
+
+*  `Log& operator<<(const LogPriority& priority)` - Overloads the << operator and change the priority
 
 *  `size_t println(LogPriority priority, char const * tag, T msg)` - Calls the print method, prints the new line character "\n" and returns the number of bytes written
 
@@ -62,6 +66,14 @@ Arduino log library. This library was made to avoid the tedious job of printing 
 *  **private** `LogPriority priority` - The priority to log
 
 *  **private** `bool is_enabled` - Holds if the log object will log
+
+*  **private** `LogPriority operator_priority` - Holds the current priority (used with the C++ style)
+
+*  **private** `String operator_tag` - Holds the tag (used with the C++ style)
+
+*  **private** `bool operator_print_tag` - Holds if the print method will print the header (used with the C++ style)
+
+*  **private** `bool get_tag` - Holds if the tag must be saved (used with the C++ style)
 
 ####`LogPriority` enum
 
