@@ -83,3 +83,7 @@ Arduino log library. This library was made to avoid the tedious job of printing 
 *  `INFO` - `i`
 *  `VERBOSE` - `v`
 *  `WARN` - `w`
+
+###`global`
+
+*  log_endl - '\n'
