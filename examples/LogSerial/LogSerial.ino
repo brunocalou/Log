@@ -41,4 +41,18 @@ void loop()
   my_log.println(INFO, "cool info", "Printing");
   my_log.println(INFO, "cool info", "Cool");
   my_log.println(INFO, "cool info", "Info");
+
+  //C++ style
+  //You must enter the priority, then the tag, then the message. To
+  //end the line you can you log_endl or '\n'
+  my_log << ASSERT << "my tag" << 'm' << 'y' << "awesome message " << 123
+  << " " << 5.5 << log_endl;
+
+  my_log << INFO << "cool info" << "Printing Cool Info" << " C++ style" << log_endl;
+
+  my_log << WARN << "break line warn" << "You" << log_endl;
+  my_log << "Can continue the message" << log_endl;
+  my_log << "Until you enter the priority" << log_endl;
+
+  my_log << DEBUG << "told you" << "Ha! It works" << log_endl;
 }

@@ -17,6 +17,8 @@
 #include "WProgram.h"
 #endif
 
+const char * log_endl = "\n";
+
 enum LogPriority {
 	ASSERT 	= 'a',
 	DEBUG  	= 'd',
@@ -32,6 +34,10 @@ public:
 		stream = &Serial;
 		priority = VERBOSE;
 		is_enabled = true;
+		operator_tag = "";
+		operator_priority = VERBOSE;
+		operator_print_tag = true;
+		get_tag = false;
 	}
 
 	/*
@@ -93,18 +99,19 @@ public:
 	*/
 	template <typename T>
 
-	size_t print(LogPriority priority, char const * tag, T msg) {
+	size_t print(LogPriority priority, char const * tag, T msg, bool print_header=true) {
 		
 		size_t bytes_written = 0;
 
 		if(is_enabled && (this->priority == priority || this->priority == VERBOSE)) {
-			String full_message = "";
-
-			full_message += (char)priority;
-			full_message += "/";
-			full_message += tag;
-			full_message += ": ";
-			bytes_written += print(full_message);
+			if(print_header) {
+				String full_message = "";
+				full_message += (char)priority;
+				full_message += "/";
+				full_message += tag;
+				full_message += ": ";
+				bytes_written += print(full_message);
+			}
 			bytes_written += print(msg);
 		}
 
@@ -126,6 +133,38 @@ public:
 		}
 
 		return bytes_written;
+	}
+
+	/*
+		Overloads the << operator for a c++ style printing
+	*/
+	template <typename T>
+
+	Log& operator<<(const T& msg) {
+		if(get_tag) {
+			operator_tag += msg;
+		} else {
+			//Convert string to char const *
+			int size = operator_tag.length() + 1;
+			char tag[size];
+			operator_tag.toCharArray(tag, size);
+
+			print(operator_priority, tag, msg, operator_print_tag);
+			operator_print_tag = false;
+		}
+		get_tag = false;
+		return *this;
+	}
+
+	/*
+		Overloads the << operator and change the priority
+	*/
+	Log& operator<<(const LogPriority& priority) {
+		operator_priority = priority;
+		get_tag =true;
+		operator_tag = "";
+		operator_print_tag = true;
+		return *this;
 	}
 
 	template <typename T>
@@ -171,6 +210,12 @@ private:
 	Stream * stream;
 	LogPriority priority;
 	bool is_enabled;
+
+	//C++ style
+	LogPriority operator_priority;
+	String operator_tag;
+	bool operator_print_tag;
+	bool get_tag;
 };
 
 #endif //LOG_H
