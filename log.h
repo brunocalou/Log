@@ -17,7 +17,9 @@
 #include "WProgram.h"
 #endif
 
-const char * log_endl = "\n";
+#ifndef log_endl
+#define log_endl '\n'
+#endif
 
 enum LogPriority {
 	ASSERT 	= 'a',
