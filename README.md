@@ -33,7 +33,7 @@ Arduino log library. This library was made to avoid the tedious job of printing 
 
 *  `size_t write(const uint8_t *buffer, size_t size)` - Calls the write method from the current stream
 
-*  `size_t print(LogPriority priority, char const * tag, T msg, bool print_header=true)` - Prints the priority, the tag and the message in the following pattern:
+*  `size_t print(LogPriority priority, char const * tag, T msg, bool print_priority=true, bool print_tag=true)` - Prints the priority, the tag and the message in the following pattern:
 		
       `priority/tag: message`
 		
@@ -43,11 +43,11 @@ Arduino log library. This library was made to avoid the tedious job of printing 
 		- The message's priority is the same as the current priority or  
 		- The current priority is setted to verbose  
 
+*  `size_t println(LogPriority priority, char const * tag, T msg, bool print_priority=true, bool print_tag=true)` - Calls the print method, prints the new line character "\n" and returns the number of bytes written
+
 *  `Log& operator<<(const T& msg)` - Overloads the << operator for a c++ style printing
 
 *  `Log& operator<<(const LogPriority& priority)` - Overloads the << operator and change the priority
-
-*  `size_t println(LogPriority priority, char const * tag, T msg)` - Calls the print method, prints the new line character "\n" and returns the number of bytes written
 
 *  `void assert(char const * tag, T msg)`
 
@@ -61,11 +61,30 @@ Arduino log library. This library was made to avoid the tedious job of printing 
 
 *  `void warn(char const * tag, T msg)`
 
+*  `Stream* getStream()` - Get the current stream
+
+*  `void hideTag()` - Hides the tags on all messages
+
+*  `void showTag()` - Shows the tags on all messages
+
+*  `void hidePriority()` - Hides the priority on all messages
+
+*  `void showPriority()` - Shows the priority on all messages
+
+*  `void hideHeader()` - Hides the priority and the tags on all messages
+
+*  `void showHeader()` - Shows the priority and the tags on all messages
+
+
 *  **private** `Stream * stream` - The stream to log
 
 *  **private** `LogPriority priority` - The priority to log
 
 *  **private** `bool is_enabled` - Holds if the log object will log
+
+*  **private** `bool print_tag` - Holds if the tag will be printed
+
+*  **private** `bool print_priority` - Holds if the priority will be printed
 
 *  **private** `LogPriority operator_priority` - Holds the current priority (used with the C++ style)
 
