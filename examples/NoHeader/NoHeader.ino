@@ -14,17 +14,6 @@ void setup()
 
   //Set the log target (it's serial by default)
   my_log.setTarget(&Serial);
-  
-  //Set the priority to be printed. The VERBOSE
-  //mode will print everything. Comment / uncomment
-  //to see the changes.
-
-  //my_log.setPriority(INFO);
-  //my_log.setPriority(ASSERT);
-  //my_log.setPriority(WARN);
-  //my_log.setPriority(DEBUG);
-  //my_log.setPriority(ERROR);
-  my_log.setPriority(VERBOSE);
 
   //Uncomment to disable the log
   //my_log.disable();
@@ -33,11 +22,12 @@ void setup()
   //my_log.hideTag();
   //my_log.hidePriority();
   //Hide header just hides the tags and the priority
-  //my_log.hideHeader();
+  my_log.hideHeader();
 }
 
 void loop()
 {
+
   //Print whatever you like
   my_log.info("info id", "message");
   my_log.assert("assert id", 6);
@@ -52,18 +42,8 @@ void loop()
   my_log.println(INFO, "cool info", "Info");
 
   //C++ style
-  //You must enter the priority, then the tag, then the message. To
-  //end the line you can you log_endl or '\n'
-  my_log << ASSERT << "my tag " << 'm' << 'y' << " awesome message " << 123
-  << " " << 5.5 << log_endl;
-
-  my_log << INFO << "cool info" << "Printing Cool Info" << " C++ style" << log_endl;
-
-  my_log << WARN << "break line warn" << "You" << log_endl;
-  my_log << "Can continue the message" << log_endl;
-  my_log << "Until you enter the priority" << log_endl;
-
-  my_log << DEBUG << "told you" << "Ha! It works" << log_endl;
+  my_log << "No header" << " at all" << log_endl;
+  my_log << DEBUG << "debug id" << "My debug" << " stuff" << log_endl;
 
   //Regular arduino print and println methods
   my_log.print("Regular Arduino");
@@ -71,4 +51,8 @@ void loop()
   my_log.println();
 
   my_log.println("Arduino println");
+
+
+  delay(500);
+
 }

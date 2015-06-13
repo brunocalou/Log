@@ -25,8 +25,17 @@ void setup()
   //my_log.setPriority(ASSERT);
   //my_log.setPriority(WARN);
   //my_log.setPriority(DEBUG);
-  //my_log.setPriority(WARN);
+  //my_log.setPriority(ERROR);
   //my_log.setPriority(VERBOSE);
+
+  //Uncomment to disable the log
+  //my_log.disable();
+
+  //Hide the tag, the priority or both.
+  //my_log.hideTag();
+  //my_log.hidePriority();
+  //Hide header just hides the tags and the priority
+  //my_log.hideHeader();
 }
 
 void loop()
@@ -43,4 +52,11 @@ void loop()
   my_log.println(INFO, "cool info", "Printing");
   my_log.println(INFO, "cool info", "Cool");
   my_log.println(INFO, "cool info", "Info");
+
+  //Regular arduino print and println methods
+  my_log.print("Regular Arduino");
+  my_log.print("  Print");
+  my_log.println();
+
+  my_log.println("Arduino println");
 }
