@@ -2,7 +2,7 @@
 Arduino log library. This library was made to avoid the tedious job of printing something and then commenting sereval lines of print commands when the information to be printed is not useful at that time. It was tested using the Serial object and the SoftwareSerial library (to use the bluetooth, for example), but it should work with (almost) any library that inherits from the Stream class, such as SD, EthernetClient, EthernetServer, ... (note that the library just prints stuff, you must handle the other operations according to the Stream class you are using).
 
 ------------------------
-##Installation
+## Installation
 1. [Download](https://github.com/brunocalou/Log/archive/master.zip) the latest release from github
 2. Unzip and rename the folder to "Log" (remove the -master)
 3. Paste the modified folder on your Library folder (.../arduino/libraries)
@@ -10,9 +10,9 @@ Arduino log library. This library was made to avoid the tedious job of printing 
 
 ------------------------
 
-##Library Reference
+## Library Reference
 
-###`Log` class
+### `Log` class
 
 *  `Log()` - Constructor.
 
@@ -94,7 +94,7 @@ Arduino log library. This library was made to avoid the tedious job of printing 
 
 *  **private** `bool get_tag` - Holds if the tag must be saved (used with the C++ style)
 
-####`LogPriority` enum
+#### `LogPriority` enum
 
 *  `ASSERT` - `a`
 *  `DEBUG` - `d`
@@ -103,6 +103,6 @@ Arduino log library. This library was made to avoid the tedious job of printing 
 *  `VERBOSE` - `v`
 *  `WARN` - `w`
 
-###`global`
+### `global`
 
 *  `const char * log_endl` - '\n'
